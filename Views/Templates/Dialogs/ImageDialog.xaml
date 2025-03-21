@@ -1,12 +1,77 @@
-﻿<Window x:Class="GenAI_ImageGenerator.Views.Templates.Dialogs.ImageDialog"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:GenAI_ImageGenerator.Views.Templates.Dialogs"
-        mc:Ignorable="d"
-        Title="ImageDialog" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+﻿<Window
+    x:Class="GenAI_ImageGenerator.Views.Templates.Dialogs.ImageDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:gif="http://wpfanimatedgif.codeplex.com"
+    xmlns:local="clr-namespace:GenAI_ImageGenerator.Views.Templates.Dialogs"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="1080"
+    Height="800"
+    AllowsTransparency="True"
+    Background="Transparent"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Border Background="#fff" CornerRadius="20">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="40" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+
+            <Ellipse Grid.Column="2" Style="{StaticResource CloseWindowButton}">
+                <Ellipse.InputBindings>
+                    <MouseBinding
+                        Command="{Binding CloseWindowCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                        Gesture="LeftClick" />
+                </Ellipse.InputBindings>
+            </Ellipse>
+
+            <Image
+                Grid.Row="1"
+                Grid.Column="1"
+                Source="/Assets/Images/test.jpg"
+                Stretch="UniformToFill"
+                Visibility="{Binding ImageGenerated, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVisibility}}" />
+
+            <StackPanel
+                Grid.Row="1"
+                Grid.Column="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Visibility="{Binding ProcessingImageGenerationRequest, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVisibility}}">
+                <Image
+                    Width="150"
+                    Height="150"
+                    gif:ImageBehavior.AnimatedSource="/Assets/Icons/generating-spinner.gif" />
+                <TextBlock
+                    Margin="20"
+                    FontSize="40"
+                    Text="Generating Image ..."
+                    TextAlignment="Center" />
+            </StackPanel>
+
+            <Button
+                Grid.Row="2"
+                Grid.Column="1"
+                Width="100"
+                Margin="0,10,0,0"
+                HorizontalAlignment="Right"
+                Command="{Binding DownloadCommand}"
+                Content="Download"
+                Style="{StaticResource DownloadButton}"
+                Visibility="{Binding ImageGenerated, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVisibility}}" />
+
+        </Grid>
+    </Border>
 </Window>

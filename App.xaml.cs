@@ -1,5 +1,7 @@
 ﻿using GenAI_ImageGenerator.Extensions;
+using GenAI_ImageGenerator.Services;
 using GenAI_ImageGenerator.ViewModels;
+using GenAI_ImageGenerator.Views.Templates.Dialogs;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Windows;
@@ -22,6 +24,12 @@ namespace GenAI_ImageGenerator
 
                 // view models
                 services.RegisterService<MainViewModel>();
+                services.RegisterService<ImageDialogViewModel>();
+
+                // views 
+                services.RegisterService<ImageDialog>();
+
+                // services 
 
             }).Build();
         }

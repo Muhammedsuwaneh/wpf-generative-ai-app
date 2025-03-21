@@ -1,6 +1,4 @@
-﻿using GenAI_ImageGenerator.Factory.Interfaces;
-using GenAI_ImageGenerator.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,19 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace GenAI_ImageGenerator.Views.Templates.Dialogs
 {
     /// <summary>
-    /// Interaction logic for ImageDialog.xaml
+    /// Interaction logic for SpeechDialog.xaml
     /// </summary>
-    public partial class ImageDialog : Window
+    public partial class SpeechDialog : UserControl
     {
-        public ImageDialog(IAbstractFactory<ImageDialogViewModel> factory)
+        public SpeechDialog()
         {
             InitializeComponent();
-            DataContext = factory.Create();
         }
     }
 }

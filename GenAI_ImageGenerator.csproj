@@ -9,15 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Icons\generating-spinner.gif" />
     <None Remove="Assets\Icons\mid-spinner.gif" />
+    <None Remove="Assets\Icons\smiling-face.png" />
     <None Remove="Assets\Images\background.jpg" />
+    <None Remove="Assets\Images\test.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Log\" />
+    <Folder Include="Data\" />
     <Folder Include="Services\Contracts\" />
-    <Folder Include="ViewModels\Interfaces\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,12 +30,18 @@
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
     <PackageReference Include="Serilog" Version="4.2.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
+    <PackageReference Include="System.Speech" Version="9.0.3" />
     <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\Icons\generating-spinner.gif" />
     <Resource Include="Assets\Icons\mid-spinner.gif" />
+    <Resource Include="Assets\Icons\smiling-face.png" />
     <Resource Include="Assets\Images\background.jpg" />
+    <Resource Include="Assets\Images\test.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

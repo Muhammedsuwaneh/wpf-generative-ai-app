@@ -3,10 +3,13 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:e="clr-namespace:GenAI_ImageGenerator.Commands.Events"
     xmlns:gif="http://wpfanimatedgif.codeplex.com"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:local="clr-namespace:GenAI_ImageGenerator"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="clr-namespace:GenAI_ImageGenerator.Views.Templates.Dialogs"
     Width="1920"
     Height="1080"
     ResizeMode="NoResize"
@@ -19,7 +22,7 @@
         <KeyBinding Key="Esc" Command="{Binding CloseWindowOnKeyPressCommand}" />
     </Window.InputBindings>
 
-    <Border Padding="10">
+    <Border>
         <Border.Background>
             <ImageBrush ImageSource="/Assets/Images/background.jpg" />
         </Border.Background>
@@ -76,13 +79,20 @@
                     Margin="10"
                     gif:ImageBehavior.AnimatedSource="/Assets/Icons/mid-spinner.gif" />
 
-                <TextBlock
-                    Margin="10"
-                    HorizontalAlignment="Center"
-                    FontSize="50"
-                    Foreground="#fff"
-                    Text="Let's Generate an image 😊"
-                    TextAlignment="Center" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="10"
+                        HorizontalAlignment="Center"
+                        FontSize="50"
+                        Foreground="#fff"
+                        Text="Let's Generate an image"
+                        TextAlignment="Center" />
+                    <Image
+                        Width="50"
+                        Height="50"
+                        Margin="10,0,0,0"
+                        Source="/Assets/Icons/smiling-face.png" />
+                </StackPanel>
             </StackPanel>
 
             <Grid Grid.Row="3" Grid.Column="1">
@@ -106,12 +116,19 @@
                         <TextBox
                             x:Name="UserPrompt"
                             Grid.Column="0"
-                            Style="{StaticResource PromptInputTextBox}" />
+                            Style="{StaticResource PromptInputTextBox}"
+                            Text="{Binding UserPrompt, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
 
                         <Border
                             Grid.Column="1"
                             Width="50"
                             Height="50">
+                            <i:Interaction.Triggers>
+                                <!--  Mouse down for drag moves events  -->
+                                <i:EventTrigger EventName="MouseDown">
+                                    <e:EventArgsCommandAction Command="{Binding SendRequestCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <materialDesign:PackIcon
                                 Width="50"
                                 Height="50"
@@ -130,6 +147,14 @@
                     Height="90"
                     CornerRadius="100"
                     Cursor="Hand">
+
+                    <i:Interaction.Triggers>
+                        <!--  Mouse down for drag moves events  -->
+                        <i:EventTrigger EventName="MouseDown">
+                            <e:EventArgsCommandAction Command="{Binding SpeechToTextCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
                     <Border.Style>
                         <Style TargetType="Border">
                             <Setter Property="Background" Value="#fff" />
@@ -164,6 +189,12 @@
                         Kind="Microphone" />
                 </Border>
             </Grid>
+
+            <ui:SpeechDialog
+                Grid.Row="3"
+                Grid.RowSpan="3"
+                Grid.ColumnSpan="4"
+                Visibility="{Binding Listening, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVisibility}}" />
 
         </Grid>
     </Border>
