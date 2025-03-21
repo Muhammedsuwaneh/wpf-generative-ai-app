@@ -15,6 +15,10 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" />
 
                 <!--  static files  -->
+                <ResourceDictionary Source="Assets/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Assets/Styles/Buttons.xaml" />
+                <ResourceDictionary Source="Assets/Styles/Inputs.xaml" />
+
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

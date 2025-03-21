@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary>
+
+            <!--  - colors  -->
+            <Color x:Key="WhiteColor">#ffffff</Color>
+            <SolidColorBrush x:Key="WhiteColorBrush" Color="{StaticResource WhiteColor}" />
+
+            <Color x:Key="LightRedColor">#FF0000</Color>
+            <SolidColorBrush x:Key="LightRedColorBrush" Color="{StaticResource LightRedColor}" />
+
+            <Color x:Key="LightGreenColor">#24FF20</Color>
+            <SolidColorBrush x:Key="LightGreenColorBrush" Color="{StaticResource LightGreenColor}" />
+
+            <Color x:Key="LightYellowColor">#FFDB20</Color>
+            <SolidColorBrush x:Key="LightYellowColorBrush" Color="{StaticResource LightYellowColor}" />
+
+            <Color x:Key="LightBlueColor">#3A90DD</Color>
+            <SolidColorBrush x:Key="LightBlueColorBrush" Color="{StaticResource LightBlueColor}" />
+
+        </ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
