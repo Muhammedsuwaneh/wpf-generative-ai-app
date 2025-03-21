@@ -109,17 +109,35 @@ namespace GenAI_ImageGenerator.ViewModels
 
         private void SendRequest(MouseButtonEventArgs args)
         {
-            var imageGeneratorDialog = App.AppHost!.Services.GetRequiredService<ImageDialog>();
+            if (string.IsNullOrEmpty(_userPrompt)) return;
 
-            if (imageGeneratorDialog != null)
-                imageGeneratorDialog.ShowDialog();
+            Application.Current.Dispatcher.Invoke(new Action(() =>
+            {
+                var imageGeneratorDialog = App.AppHost!.Services.GetRequiredService<ImageDialog>();
+
+                if (imageGeneratorDialog != null)
+                    imageGeneratorDialog.ShowDialog();
+            }));
         }
 
         private void StartListening(MouseButtonEventArgs args)
         {
-            Listening = true; // show speech ui
-            CognitiveServices.DetectSpeech();
-            CognitiveServices.recognizer.SpeechRecognized += Recognizer_SpeechRecognized;
+            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                try
+                {
+                    Listening = true; // show speech ui
+                    CognitiveServices.DetectSpeech();
+                    CognitiveServices.recognizer.SpeechRecognized += Recognizer_SpeechRecognized;
+                }
+                catch (Exception ex)
+                {
+                    Log.Logs.LogToFile(ex, Log.LogType.Warning);
+                    MessageBox.Show("SOmething went wrong while recording speech. Please check your microphone to ensure it" +
+                        " is connected");
+                }
+
+            }));
         }
 
         private void Recognizer_SpeechRecognized(object? sender, SpeechRecognizedEventArgs e)

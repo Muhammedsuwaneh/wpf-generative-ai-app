@@ -30,6 +30,7 @@ namespace GenAI_ImageGenerator
                 services.RegisterService<ImageDialog>();
 
                 // services 
+                services.RegisterService<ImageGenerationService>();
 
             }).Build();
         }

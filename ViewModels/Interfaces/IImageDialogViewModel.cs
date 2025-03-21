@@ -6,7 +6,7 @@ namespace GenAI_ImageGenerator.ViewModels
     {
         ICommand CloseWindowCommand { get; }
         ICommand DownloadCommand { get; }
-        string GeneratedImageUrl { get; set; }
+        string GeneratedImageUri { get; set; }
         bool ImageGenerated { get; set; }
         bool ProcessingImageGenerationRequest { get; set; }
     }

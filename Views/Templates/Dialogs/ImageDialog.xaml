@@ -40,7 +40,7 @@
             <Image
                 Grid.Row="1"
                 Grid.Column="1"
-                Source="/Assets/Images/test.jpg"
+                Source="{Binding GeneratedImageUri, UpdateSourceTrigger=PropertyChanged}"
                 Stretch="UniformToFill"
                 Visibility="{Binding ImageGenerated, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVisibility}}" />
 
@@ -69,8 +69,8 @@
                 HorizontalAlignment="Right"
                 Command="{Binding DownloadCommand}"
                 Content="Download"
-                Style="{StaticResource DownloadButton}"
-                Visibility="{Binding ImageGenerated, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVisibility}}" />
+                IsEnabled="{Binding ImageGenerated, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVisibility}}"
+                Style="{StaticResource DownloadButton}" />
 
         </Grid>
     </Border>

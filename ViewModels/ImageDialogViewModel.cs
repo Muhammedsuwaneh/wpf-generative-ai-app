@@ -1,10 +1,17 @@
 ﻿using GenAI_ImageGenerator.Commands;
 using GenAI_ImageGenerator.Commands.Utilities;
+using GenAI_ImageGenerator.Factory.Interfaces;
+using GenAI_ImageGenerator.Services;
 using GenAI_ImageGenerator.Views.Templates.Dialogs;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Win32;
+using OpenAI;
+using OpenAI.Images;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,17 +21,19 @@ namespace GenAI_ImageGenerator.ViewModels
 {
     public class ImageDialogViewModel : ViewModelBase, IImageDialogViewModel
     {
+        private IAbstractFactory<ImageGenerationService> _factory;
 
-        private string _generatedImageUrl = string.Empty;
-        public string GeneratedImageUrl
+        private string _generatedImageUri = string.Empty;
+
+        public string GeneratedImageUri
         {
-            get => _generatedImageUrl;
+            get => _generatedImageUri;
             set
             {
-                if (_generatedImageUrl != value)
+                if (_generatedImageUri != value)
                 {
-                    _generatedImageUrl = value;
-                    OnPropertyChanged(nameof(GeneratedImageUrl));
+                    _generatedImageUri = value;
+                    OnPropertyChanged(nameof(GeneratedImageUri));
                 }
             }
         }
@@ -83,16 +92,53 @@ namespace GenAI_ImageGenerator.ViewModels
 
         private async void DownloadImage(object obj)
         {
-            MessageBox.Show("Dowloading .....");
+            if(GeneratedImageUri != null)
+            {
+                var downloads = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
+                var savePath = Path.Combine(downloads, GenerateFilename());
+
+                using (HttpClient client = new HttpClient())
+                {
+                    byte[] imageBytes = await client.GetByteArrayAsync(GeneratedImageUri);
+                    await System.IO.File.WriteAllBytesAsync(savePath, imageBytes);
+                }
+            }
         }
 
-        public ImageDialogViewModel() => ProcessUserRequest();
+        private string GenerateFilename() => "generated_image_" + Guid.NewGuid().ToString() + ".jpg";
 
-        private void ProcessUserRequest()
+        public ImageDialogViewModel(IAbstractFactory<ImageGenerationService> factory)
         {
-            Task.Delay(5000);
-            //ProcessingImageGenerationRequest = false;
-            //ImageGenerated = true;
+            _factory = factory;
+            Task.Run(() => ProcessUserRequest());
+        }
+
+        private async void ProcessUserRequest()
+        {
+            try
+            {
+                var imageUri = await _factory.Create().GenerateImageFromPrompt("");
+                if(imageUri != null)
+                {
+                    GeneratedImageUri = imageUri;
+                    ImageGenerated = true;
+                }
+                else
+                {
+                    throw new Exception("Image was not generated");
+                }
+            }
+            catch (Exception ex)
+            {
+                // log errors
+                ImageGenerated = false;
+                Log.Logs.LogToFile(ex, Log.LogType.Warning);
+                MessageBox.Show("Something went wrong. Image was not generated. Close this window and try again");
+            }
+            finally
+            {
+                ProcessingImageGenerationRequest = false;
+            }
         }
 
         private void CloseWindow(object obj)

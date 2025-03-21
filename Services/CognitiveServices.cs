@@ -1,6 +1,4 @@
-﻿using GenAI_ImageGenerator.ViewModels;
-using Microsoft.Extensions.DependencyInjection;
-using System.Speech.Recognition;
+﻿using System.Speech.Recognition;
 
 namespace GenAI_ImageGenerator.Services
 {
