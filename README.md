@@ -2,8 +2,7 @@
 
 ## About 
 
-The application generates AI Images from user prompts using OpenAI's Dall-E-2 model.
-
+The application generates AI Images from user prompts using OpenAI's Dall-E-3 model.
 
 
 ## Prerequisites / how to run
