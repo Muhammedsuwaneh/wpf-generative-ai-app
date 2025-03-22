@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace GenAI_ImageGenerator.ViewModels
+namespace GenAI_ImageGenerator.ViewModels.Interfaces
 {
     public interface IMainViewModel
     {
@@ -10,5 +10,6 @@ namespace GenAI_ImageGenerator.ViewModels
         ICommand MinimizeWindowCommand { get; }
         ICommand SendRequestCommand { get; }
         ICommand SpeechToTextCommand { get; }
+        string UserPrompt { get; set; }
     }
 }

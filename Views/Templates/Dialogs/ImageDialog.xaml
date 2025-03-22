@@ -42,7 +42,7 @@
                 Grid.Column="1"
                 Visibility="{Binding ImageGenerated, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVisibility}}">
                 <Border.Background>
-                    <ImageBrush ImageSource="{Binding GeneratedImageUri, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" />
+                    <ImageBrush ImageSource="{Binding GeneratedImageSource, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" />
                 </Border.Background>
             </Border>
 

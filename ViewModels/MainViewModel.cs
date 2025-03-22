@@ -2,6 +2,7 @@
 using GenAI_ImageGenerator.Commands.Utilities;
 using GenAI_ImageGenerator.Factory.Interfaces;
 using GenAI_ImageGenerator.Services;
+using GenAI_ImageGenerator.ViewModels.Interfaces;
 using GenAI_ImageGenerator.Views.Templates.Dialogs;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -23,7 +24,7 @@ namespace GenAI_ImageGenerator.ViewModels
             get => _userPrompt;
             set
             {
-                if(_userPrompt != value)
+                if (_userPrompt != value)
                 {
                     _userPrompt = value;
                     OnPropertyChanged(nameof(UserPrompt));
@@ -143,7 +144,7 @@ namespace GenAI_ImageGenerator.ViewModels
         private void Recognizer_SpeechRecognized(object? sender, SpeechRecognizedEventArgs e)
         {
             Listening = false;
-            UserPrompt = e.Result.Text; 
+            UserPrompt = e.Result.Text;
         }
 
         private void CloseWindowOnEscapeKeyPress(KeyEventArgs e) => GetCurrentWindow().Close();

@@ -2,6 +2,7 @@
 using GenAI_ImageGenerator.Commands.Utilities;
 using GenAI_ImageGenerator.Factory.Interfaces;
 using GenAI_ImageGenerator.Services;
+using GenAI_ImageGenerator.ViewModels.Interfaces;
 using GenAI_ImageGenerator.Views.Templates.Dialogs;
 using MaterialDesignColors;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,11 +18,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace GenAI_ImageGenerator.ViewModels
 {
     public class ImageDialogViewModel : ViewModelBase, IImageDialogViewModel
     {
+        private readonly IMainViewModel _mainViewModel;
         private IAbstractFactory<ImageGenerationService> _factory;
 
         private bool _requestWasUnsuccessful = false;
@@ -53,20 +57,32 @@ namespace GenAI_ImageGenerator.ViewModels
             }
         }
 
-        private string _generatedImageUri = string.Empty;
+        private BinaryData _generatedImage;
 
-        public string GeneratedImageUri
+        public BinaryData GeneratedImage
         {
-            get => _generatedImageUri;
+            get => _generatedImage;
             set
             {
-                if (_generatedImageUri != value)
+                if (_generatedImage != value)
                 {
-                    _generatedImageUri = value;
-                    OnPropertyChanged(nameof(GeneratedImageUri));
+                    _generatedImage = value;
+                    OnPropertyChanged(nameof(GeneratedImage));
                 }
             }
         }
+
+        private ImageSource _generatedImageSource;
+        public ImageSource GeneratedImageSource
+        {
+            get => _generatedImageSource;
+            set
+            {
+                _generatedImageSource = value;
+                OnPropertyChanged(nameof(GeneratedImageSource));
+            }
+        }
+
 
         private bool _imageGenerated = false;
         public bool ImageGenerated
@@ -122,29 +138,29 @@ namespace GenAI_ImageGenerator.ViewModels
 
         private void DownloadImage(object obj)
         {
-            if(GeneratedImageUri != null)
+            if(GeneratedImage != null)
             {
                 Application.Current.Dispatcher.Invoke(new Action(async () =>
                 {
                     var downloads = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
                     var savePath = Path.Combine(downloads, GenerateFilename());
 
-                    using (HttpClient client = new HttpClient())
+                    using (FileStream stream = File.OpenWrite(savePath))
                     {
-                        byte[] imageBytes = await client.GetByteArrayAsync(GeneratedImageUri);
-                        await System.IO.File.WriteAllBytesAsync(savePath, imageBytes);
-
+                        GeneratedImage.ToStream().CopyTo(stream);
                         MessageBox.Show("Image saved to Downloads ✅");
                     }
+
                 }));
             }
         }
 
         private string GenerateFilename() => "generated_image_" + Guid.NewGuid().ToString() + ".jpg";
 
-        public ImageDialogViewModel(IAbstractFactory<ImageGenerationService> factory)
+        public ImageDialogViewModel(IAbstractFactory<ImageGenerationService> factory, IMainViewModel mainViewModel)
         {
             _factory = factory;
+            _mainViewModel = mainViewModel;
             Task.Run(() => ProcessUserRequest());
         }
 
@@ -152,13 +168,13 @@ namespace GenAI_ImageGenerator.ViewModels
         {
             try
             {
-                await Task.Delay(3000);
-                
-                var imageUri = await _factory.Create().GenerateImageFromPrompt("");
+                var image = await _factory.Create().GenerateImageFromPrompt(_mainViewModel.UserPrompt);
 
-                if(!string.IsNullOrEmpty(imageUri))
+                if(image != null)
                 {
-                    GeneratedImageUri = imageUri;
+                    GeneratedImage = image;
+                    // display image 
+                    GeneratedImageSource = ConvertToImage(image.ToArray());
                     ImageGenerated = true;
                 }
                 else throw new Exception("Image was not generated");
@@ -176,6 +192,21 @@ namespace GenAI_ImageGenerator.ViewModels
                 ProcessingImageGenerationRequest = false;
             }
         }
+
+        private BitmapImage ConvertToImage(byte[] imageData)
+        {
+            using (var ms = new MemoryStream(imageData))
+            {
+                var image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.StreamSource = ms;
+                image.EndInit();
+                image.Freeze(); // Important for UI thread safety
+                return image;
+            }
+        }
+
 
         private void CloseWindow(object obj)
         {

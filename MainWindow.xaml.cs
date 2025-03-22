@@ -1,5 +1,6 @@
 ﻿using GenAI_ImageGenerator.Factory.Interfaces;
 using GenAI_ImageGenerator.ViewModels;
+using GenAI_ImageGenerator.ViewModels.Interfaces;
 using System.Windows;
 
 namespace GenAI_ImageGenerator
@@ -9,10 +10,10 @@ namespace GenAI_ImageGenerator
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow(IAbstractFactory<MainViewModel> factory)
+        public MainWindow(IMainViewModel mainViewModel)
         {
             InitializeComponent();
-            DataContext = factory.Create();
+            DataContext = mainViewModel;
         }
     }
 }

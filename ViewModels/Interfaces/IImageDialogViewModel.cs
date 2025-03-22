@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using System.Windows.Media;
 
 namespace GenAI_ImageGenerator.ViewModels
 {
@@ -6,7 +7,7 @@ namespace GenAI_ImageGenerator.ViewModels
     {
         ICommand CloseWindowCommand { get; }
         ICommand DownloadCommand { get; }
-        string GeneratedImageUri { get; set; }
+        ImageSource GeneratedImageSource { get; set; }
         bool ImageGenerated { get; set; }
         bool ProcessingImageGenerationRequest { get; set; }
     }

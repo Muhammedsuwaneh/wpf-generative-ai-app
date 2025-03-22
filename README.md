@@ -8,16 +8,13 @@ The application generates AI Images from user prompts using OpenAI's Dall-E-2 mo
 
 ## Prerequisites / how to run
 
+** Get your OpenAI API KEY/TOKEN from [here](https://platform.openai.com/docs/overview)
 
+** private string API_KEY = "YOUR_API_KEY". Note: This should only be used in development. For production, consider using safer methods of retrieving your API.
 
-Get your OpenAI API KEY/TOKEN from [here](https://platform.openai.com/docs/overview)
+** Use Visual studio execute the solution GenAI_ImageGenerator.csproj
 
-Place the OpenAI API KEY/TOKEN in the project's .env file with "API_KEY" as it's key.
-
-Use Visual studio execute the solution GenAI_ImageGenerator.csproj
-
-Update any necessary dependencies using Visual Studio's Nuget Package Manager or Package Manager Console
-
+** Update any necessary dependencies using Visual Studio's Nuget Package Manager or Package Manager Console
 
 
 ### List all packages/dependencies 
