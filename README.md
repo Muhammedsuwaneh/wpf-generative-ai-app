@@ -48,12 +48,11 @@ The application generates AI Images from user prompts using OpenAI's Dall-E-2 mo
 ### Main window 
 ![Screenshot](Screenshots/MainWindow.png)
 
-### Speech to text
-![Screenshot](Screenshots/cognitive.png)
-
-
 ### Generated Image Dialog
 ![Screenshot](Screenshots/dialog.png)
+
+### Speech to text![Screenshot](Screenshots/cognitive.png
+
 
 ![Screenshot](Screenshots/loading.png)
 
