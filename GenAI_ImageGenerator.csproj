@@ -11,6 +11,7 @@
   <ItemGroup>
     <None Remove="Assets\Icons\generating-spinner.gif" />
     <None Remove="Assets\Icons\mid-spinner.gif" />
+    <None Remove="Assets\Icons\sad-animation.gif" />
     <None Remove="Assets\Icons\smiling-face.png" />
     <None Remove="Assets\Images\background.jpg" />
     <None Remove="Assets\Images\test.jpg" />
@@ -38,6 +39,7 @@
   <ItemGroup>
     <Resource Include="Assets\Icons\generating-spinner.gif" />
     <Resource Include="Assets\Icons\mid-spinner.gif" />
+    <Resource Include="Assets\Icons\sad-animation.gif" />
     <Resource Include="Assets\Icons\smiling-face.png" />
     <Resource Include="Assets\Images\background.jpg" />
     <Resource Include="Assets\Images\test.jpg">

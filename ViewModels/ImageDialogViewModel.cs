@@ -3,6 +3,7 @@ using GenAI_ImageGenerator.Commands.Utilities;
 using GenAI_ImageGenerator.Factory.Interfaces;
 using GenAI_ImageGenerator.Services;
 using GenAI_ImageGenerator.Views.Templates.Dialogs;
+using MaterialDesignColors;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Win32;
 using OpenAI;
@@ -22,6 +23,35 @@ namespace GenAI_ImageGenerator.ViewModels
     public class ImageDialogViewModel : ViewModelBase, IImageDialogViewModel
     {
         private IAbstractFactory<ImageGenerationService> _factory;
+
+        private bool _requestWasUnsuccessful = false;
+        public bool RequestWasUnsuccessful
+        {
+            get => _requestWasUnsuccessful;
+            set
+            {
+                if(_requestWasUnsuccessful != value)
+                {
+                    _requestWasUnsuccessful = value;
+                    OnPropertyChanged(nameof(RequestWasUnsuccessful));  
+                }
+            }
+        }
+
+
+        private string _errorMessage = string.Empty;
+        public string ErrorMesage
+        {
+            get => _errorMessage;
+            set
+            {
+                if (_errorMessage != value)
+                {
+                    _errorMessage = value;
+                    OnPropertyChanged(nameof(ErrorMesage));
+                }
+            }
+        }
 
         private string _generatedImageUri = string.Empty;
 
@@ -90,18 +120,23 @@ namespace GenAI_ImageGenerator.ViewModels
             }
         }
 
-        private async void DownloadImage(object obj)
+        private void DownloadImage(object obj)
         {
             if(GeneratedImageUri != null)
             {
-                var downloads = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
-                var savePath = Path.Combine(downloads, GenerateFilename());
-
-                using (HttpClient client = new HttpClient())
+                Application.Current.Dispatcher.Invoke(new Action(async () =>
                 {
-                    byte[] imageBytes = await client.GetByteArrayAsync(GeneratedImageUri);
-                    await System.IO.File.WriteAllBytesAsync(savePath, imageBytes);
-                }
+                    var downloads = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
+                    var savePath = Path.Combine(downloads, GenerateFilename());
+
+                    using (HttpClient client = new HttpClient())
+                    {
+                        byte[] imageBytes = await client.GetByteArrayAsync(GeneratedImageUri);
+                        await System.IO.File.WriteAllBytesAsync(savePath, imageBytes);
+
+                        MessageBox.Show("Image saved to Downloads ✅");
+                    }
+                }));
             }
         }
 
@@ -117,23 +152,24 @@ namespace GenAI_ImageGenerator.ViewModels
         {
             try
             {
+                await Task.Delay(3000);
+                
                 var imageUri = await _factory.Create().GenerateImageFromPrompt("");
-                if(imageUri != null)
+
+                if(!string.IsNullOrEmpty(imageUri))
                 {
                     GeneratedImageUri = imageUri;
                     ImageGenerated = true;
                 }
-                else
-                {
-                    throw new Exception("Image was not generated");
-                }
+                else throw new Exception("Image was not generated");
             }
             catch (Exception ex)
             {
-                // log errors
                 ImageGenerated = false;
-                Log.Logs.LogToFile(ex, Log.LogType.Warning);
-                MessageBox.Show("Something went wrong. Image was not generated. Close this window and try again");
+                RequestWasUnsuccessful = true;
+
+                Log.Logs.LogToFile(ex, Log.LogType.Warning); // log errors
+                ErrorMesage = "Something went wrong. Image was not generated. Close this window and try again";
             }
             finally
             {
@@ -143,8 +179,7 @@ namespace GenAI_ImageGenerator.ViewModels
 
         private void CloseWindow(object obj)
         {
-            if (obj is ImageDialog window)
-                window.Close();
+            if (obj is ImageDialog window) window.Close();
         }
     }
 }

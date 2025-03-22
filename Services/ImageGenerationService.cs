@@ -17,8 +17,9 @@ namespace GenAI_ImageGenerator.Services
         public async Task<string> GenerateImageFromPrompt(string prompt)
         {
             DotNetEnv.Env.Load();
-            var apiKey = Environment.GetEnvironmentVariable("API_KEY");
-            //_client = new ImageClient("dall-e-3", apiKey);
+            var apiKey = Environment.GetEnvironmentVariable("API_KEY", EnvironmentVariableTarget.Process);
+            
+            //_client = new ImageClient("dall-e-3", "dsdsds");
 
             //ImageGenerationOptions options = new ImageGenerationOptions
             //{
@@ -29,6 +30,7 @@ namespace GenAI_ImageGenerator.Services
             //};
 
             //GeneratedImage image = await _client.GenerateImageAsync("", options);
+
             return "https://manlybattery.com/wp-content/uploads/2022/03/Introduction-of-flashlight.jpg";
         }
     }

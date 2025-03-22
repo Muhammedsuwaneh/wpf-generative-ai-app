@@ -29,7 +29,7 @@
 
             <Style x:Key="DownloadButton" TargetType="Button">
                 <Setter Property="Cursor" Value="Hand" />
-                <Setter Property="Background" Value="#3A90DD" />
+                <Setter Property="Background" Value="#0A152F" />
                 <Setter Property="Foreground" Value="#fff" />
                 <Setter Property="Template">
                     <Setter.Value>
@@ -57,7 +57,7 @@
                                                 <ColorAnimation
                                                     Storyboard.TargetName="border"
                                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                    To="#3A99BA"
+                                                    To="#000"
                                                     Duration="0:0:0.3" />
                                             </Storyboard>
                                         </BeginStoryboard>
@@ -68,7 +68,7 @@
                                                 <ColorAnimation
                                                     Storyboard.TargetName="border"
                                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                    To="#3A90DD"
+                                                    To="#0A152F"
                                                     Duration="0:0:0.3" />
                                             </Storyboard>
                                         </BeginStoryboard>
