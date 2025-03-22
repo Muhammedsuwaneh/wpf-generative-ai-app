@@ -1,4 +1,4 @@
-﻿﻿## 🎞️ WPF Generative AI Desktop Application
+﻿🤖 WPF Generative AI Desktop Application
 
 ## About 
 
@@ -6,13 +6,13 @@ The application generates AI Image from user prompts using OpenAI's Dall-E-2 mod
 
 ## Prerequisites / how to run
 
-## Get your OpenAI API KEY/TOKEN from [here](https://platform.openai.com/docs/overview)
+Get your OpenAI API KEY/TOKEN from [here](https://platform.openai.com/docs/overview)
 
-## Place the OpenAI API KEY/TOKEN in the project's .env file with "API_KEY" as it's key.
+# Place the OpenAI API KEY/TOKEN in the project's .env file with "API_KEY" as it's key.
 
-## Use Visual studio execute the solution GenAI_ImageGenerator.csproj
+# Use Visual studio execute the solution GenAI_ImageGenerator.csproj
 
-## Update any necessary dependencies using Visual Studio's ***Nuget Package Manager or Package Manager Console
+# Update any necessary dependencies using Visual Studio's ***Nuget Package Manager or Package Manager Console
 
 ## List all packages/dependencies 
 
@@ -29,7 +29,7 @@ The application generates AI Image from user prompts using OpenAI's Dall-E-2 mod
 ## Technologies/Dependencies used
 
 <div id="badges">
-  <img src="https://img.shields.io/badge/-C#-green" />
+  <img src="https://img.shields.io/badge/-C Sharp-green" />
   <img src="https://img.shields.io/badge/-dotnet core 8-red" />
   <img src="https://img.shields.io/badge/-WPF-blue" />
   <img src="https://img.shields.io/badge/-Xaml-green" />
@@ -42,7 +42,7 @@ The application generates AI Image from user prompts using OpenAI's Dall-E-2 mod
 ## User Interface
 
 ### Main window 
-![Screenshot](Screenshots/mainWindow.png)
+![Screenshot](Screenshots/MainWindow.png)
 
 ### Speech to text
 ![Screenshot](Screenshots/cognitive.png)
