@@ -9,7 +9,7 @@ The application also supports a speech-to-text cognitive service using System.Sp
 
 - Get your OpenAI API KEY/TOKEN from [here](https://platform.openai.com/docs/overview)
 
-- Set your API_KEY. Note: This should only be used in development. For production, consider using safer methods of retrieving your API.
+- Set your API_KEY. Note: This should only be used in development. For production, consider using safer methods of retrieving your API KEY.
 
 ```bash
   private string API_KEY = "YOUR_API_KEY"
