@@ -7,12 +7,15 @@ The application also supports a speech-to-text cognitive service using System.Sp
 
 ## Prerequisites / how to run
 
-** Get your OpenAI API KEY/TOKEN from [here](https://platform.openai.com/docs/overview)
+- Get your OpenAI API KEY/TOKEN from [here](https://platform.openai.com/docs/overview)
 
-** private string API_KEY = "YOUR_API_KEY". Note: This should only be used in development. For production, consider using safer methods of retrieving your API.
+- Set your API_KEY. Note: This should only be used in development. For production, consider using safer methods of retrieving your API.
 
-** Use Visual studio execute the solution GenAI_ImageGenerator.cspro
+```bash
+  private string API_KEY = "YOUR_API_KEY"
+```
 
+- Use Visual studio execute the solution GenAI_ImageGenerator.cspro
 
 ### List all packages/dependencies 
 
@@ -48,7 +51,6 @@ The application also supports a speech-to-text cognitive service using System.Sp
 ![Screenshot](Screenshots/dialog.png)
 
 ### Speech to text![Screenshot](Screenshots/cognitive.png
-
 
 ![Screenshot](Screenshots/loading.png)
 
