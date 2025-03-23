@@ -1,6 +1,6 @@
 ﻿🤖 WPF Generative AI Desktop Application
 
-## About 
+## About application
 
 The application generates AI Images from user prompts using OpenAI's Dall-E-3 model.
 The application also supports a speech-to-text cognitive service using System.Speech.Recognition library.
