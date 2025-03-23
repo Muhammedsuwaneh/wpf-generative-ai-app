@@ -15,7 +15,7 @@ The application also supports a speech-to-text cognitive service using System.Sp
   private string API_KEY = "YOUR_API_KEY"
 ```
 
-- Use Visual studio execute the solution GenAI_ImageGenerator.cspro
+- Use Visual studio to execute the solution GenAI_ImageGenerator.csproj
 
 ### List all packages/dependencies 
 
@@ -48,6 +48,7 @@ The application also supports a speech-to-text cognitive service using System.Sp
 ![Screenshot](Screenshots/MainWindow.png)
 
 ### Generated Image Dialog
+
 ![Screenshot](Screenshots/dialog.png)
 
 ### Speech to text![Screenshot](Screenshots/cognitive.png
