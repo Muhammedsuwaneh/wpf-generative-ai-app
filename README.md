@@ -51,7 +51,9 @@ The application also supports a speech-to-text cognitive service using System.Sp
 
 ![Screenshot](Screenshots/dialog.png)
 
-### Speech to text![Screenshot](Screenshots/cognitive.png
+### Speech to text
+
+![Screenshot](Screenshots/cognitive.png)
 
 ![Screenshot](Screenshots/loading.png)
 
