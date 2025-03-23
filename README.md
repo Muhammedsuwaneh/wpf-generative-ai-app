@@ -3,6 +3,7 @@
 ## About 
 
 The application generates AI Images from user prompts using OpenAI's Dall-E-3 model.
+The application also supports a speech-to-text cognitive service using System.Speech.Recognition library.
 
 ## Prerequisites / how to run
 
