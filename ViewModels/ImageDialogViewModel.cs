@@ -147,7 +147,7 @@ namespace GenAI_ImageGenerator.ViewModels
 
                     using (FileStream stream = File.OpenWrite(savePath))
                     {
-                        GeneratedImage.ToStream().CopyTo(stream);
+                        await GeneratedImage.ToStream().CopyToAsync(stream);
                         MessageBox.Show("Image saved to Downloads ✅");
                     }
 
