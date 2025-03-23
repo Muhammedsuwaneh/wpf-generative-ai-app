@@ -4,16 +4,13 @@
 
 The application generates AI Images from user prompts using OpenAI's Dall-E-3 model.
 
-
 ## Prerequisites / how to run
 
 ** Get your OpenAI API KEY/TOKEN from [here](https://platform.openai.com/docs/overview)
 
 ** private string API_KEY = "YOUR_API_KEY". Note: This should only be used in development. For production, consider using safer methods of retrieving your API.
 
-** Use Visual studio execute the solution GenAI_ImageGenerator.csproj
-
-** Update any necessary dependencies using Visual Studio's Nuget Package Manager or Package Manager Console
+** Use Visual studio execute the solution GenAI_ImageGenerator.cspro
 
 
 ### List all packages/dependencies 
@@ -21,7 +18,6 @@ The application generates AI Images from user prompts using OpenAI's Dall-E-3 mo
 ```bash
   Install-Package <PackageName> [-Version <version>] [-ProjectName <project>] [-Source <source>] [-DependencyVersion <dependency>]
 ```
-
 
 ## Install a package
 
