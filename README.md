@@ -1,5 +1,8 @@
 ﻿🖼️ WPF Generative AI Image Creator
 
+![Screenshot](Screenshots/MainWindow.png)
+
+
 📌 About the Application
 This AI-powered image generation app transforms user input into stunning visuals using generative AI. Users can either type a prompt or use speech-to-text functionality to describe the image they want, and the app generates a unique AI image in seconds.
 
