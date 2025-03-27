@@ -61,9 +61,13 @@ Users can download their generated images.
   <img src="https://img.shields.io/badge/-Material Design-blue" />
 </div>
 
+
+
 🖥️ User Interface
 
+
 🤖 Main window 
+
 ![Screenshot](Screenshots/MainWindow.png)
 
 🤖 Generated Image Dialog
@@ -71,6 +75,7 @@ Users can download their generated images.
 ![Screenshot](Screenshots/loading.png)
 
 ![Screenshot](Screenshots/dialog.png)
+
 
 🎙️ Speech to text
 
