@@ -15,6 +15,7 @@
     <None Remove="Assets\Icons\smiling-face.png" />
     <None Remove="Assets\Images\background.jpg" />
     <None Remove="Assets\Images\test.jpg" />
+    <None Remove="Assets\Sounds\sound.wav" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,6 +39,9 @@
     <Resource Include="Assets\Images\test.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Content Include="Assets\Sounds\sound.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Speech.Recognition;
 using System.Text;
 using System.Threading.Tasks;
@@ -128,6 +129,8 @@ namespace GenAI_ImageGenerator.ViewModels
                 try
                 {
                     Listening = true; // show speech ui
+                    PlaySpeechSoundEffect(); // play sound
+
                     CognitiveServices.DetectSpeech();
                     CognitiveServices.recognizer.SpeechRecognized += Recognizer_SpeechRecognized;
                 }
@@ -139,6 +142,14 @@ namespace GenAI_ImageGenerator.ViewModels
                 }
 
             }));
+        }
+
+        private void PlaySpeechSoundEffect()
+        {
+            var soundEffectFilePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "Assets/Sounds/sound.wav");
+            var player = new SoundPlayer(soundEffectFilePath); 
+            player.Play();
+
         }
 
         private void Recognizer_SpeechRecognized(object? sender, SpeechRecognizedEventArgs e)
