@@ -29,6 +29,16 @@ Users can download their generated images.
 
 ⚙️ Prerequisites / how to run
 
+```bash
+# Clone the repository
+git clone https://github.com/Muhammedsuwaneh/wpf-generative-ai-app
+
+# Navigate to the project folder
+cd wpf-generative-ai-app
+
+# Build and run the project in Visual Studio
+```
+
 - Get your OpenAI API KEY/TOKEN from [here](https://platform.openai.com/docs/overview)
 
 - Set your API_KEY. Note: This should only be used in development. For production, consider using safer methods of retrieving your API KEY.
