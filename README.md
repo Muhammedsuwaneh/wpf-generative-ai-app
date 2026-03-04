@@ -49,7 +49,7 @@ cd wpf-generative-ai-app
 
 - Use Visual studio to execute the solution GenAI_ImageGenerator.csproj
 
-⚙️ List all packages/dependencies 
+### List all packages/dependencies 
 
 ```bash
   Install-Package <PackageName> [-Version <version>] [-ProjectName <project>] [-Source <source>] [-DependencyVersion <dependency>]
