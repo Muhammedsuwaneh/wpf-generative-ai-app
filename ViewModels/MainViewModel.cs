@@ -1,5 +1,6 @@
 ﻿using GenAI_ImageGenerator.Commands;
 using GenAI_ImageGenerator.Commands.Utilities;
+using GenAI_ImageGenerator.Common;
 using GenAI_ImageGenerator.Factory.Interfaces;
 using GenAI_ImageGenerator.Services;
 using GenAI_ImageGenerator.ViewModels.Interfaces;
@@ -136,7 +137,7 @@ namespace GenAI_ImageGenerator.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    Log.Logs.LogToFile(ex, Log.LogType.Warning);
+                    Logs.LogToFile(ex, LogType.Warning);
                     MessageBox.Show("SOmething went wrong while recording speech. Please check your microphone to ensure it" +
                         " is connected");
                 }

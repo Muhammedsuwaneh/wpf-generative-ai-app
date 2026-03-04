@@ -1,5 +1,6 @@
 ﻿using GenAI_ImageGenerator.Commands;
 using GenAI_ImageGenerator.Commands.Utilities;
+using GenAI_ImageGenerator.Common;
 using GenAI_ImageGenerator.Factory.Interfaces;
 using GenAI_ImageGenerator.Services;
 using GenAI_ImageGenerator.ViewModels.Interfaces;
@@ -184,7 +185,7 @@ namespace GenAI_ImageGenerator.ViewModels
                 ImageGenerated = false;
                 RequestWasUnsuccessful = true;
 
-                Log.Logs.LogToFile(ex, Log.LogType.Warning); // log errors
+                Logs.LogToFile(ex, LogType.Warning); // log errors
                 ErrorMesage = "Something went wrong. Image was not generated. Close this window and try again";
             }
             finally
